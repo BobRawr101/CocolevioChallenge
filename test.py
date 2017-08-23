@@ -19,21 +19,21 @@ def main():
     # amount of inventory seller has 
     stock = 23
 
-    input = pd.read_csv('input.csv', index_col='Company')
-    print(input)
+    data = pd.read_csv('input.csv', index_col='Company')
+    print(data)
 
-    lists = subset_sum(input['Amount'], stock)
-    for list in lists:
-        print(list)
+    lists = subset_sum(data, stock)
+    for buyers in lists:
+        print(buyers)
+    
 
-
-def subset_sum(numbers, target, partial=[], partial_sum=0):
+def subset_sum(data, target, partial=[], partial_sum=0):
     if partial_sum == target:
         yield partial
     if partial_sum >= target:
         return
-    for i, n in enumerate(numbers):
-        remaining = numbers[i + 1:]
-        yield from subset_sum(remaining, target, partial + [n], partial_sum + n)
+    for i, n in enumerate(data.index):
+        remaining = data[i + 1:]
+        yield from subset_sum(remaining, target, partial + [n], partial_sum + data.loc[n]['Amount'])
 
 main()
