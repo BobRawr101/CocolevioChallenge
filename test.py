@@ -1,8 +1,5 @@
+import pandas as pd
 import numpy as np
-import matplotlib
-import matplotlib.pyplot as plt
-import os
-import pandas as pd 
 
 
 '''
@@ -23,8 +20,22 @@ def main():
     print(data)
 
     lists = subset_sum(data, stock)
+
+    best_combo = []
+    best_profit = 0  
     for buyers in lists:
         print(buyers)
+        temp_profit = 0
+        for buyer in buyers:
+            temp_profit += data.loc[buyer]['Price']
+        if temp_profit > best_profit:
+            best_profit = temp_profit
+            best_combo = buyers
+
+    print(best_combo)
+    print(best_profit)
+
+
     
 
 def subset_sum(data, target, partial=[], partial_sum=0):
