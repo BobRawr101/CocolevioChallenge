@@ -16,12 +16,15 @@ def main():
     stock = 23
 
     data = pd.read_csv('input.csv', index_col='Company')
-    print(data)
+    print('Input Data:')
+    print(data, '\n')
 
     lists = subset_sum(data, stock)
     best_combo, best_profit = find_best(data, lists)
 
-    print(best_combo)
+    print('Best Combination:')
+    print(best_combo, '\n')
+    print('Best Profit Achieved:')
     print(best_profit)
 
 
@@ -39,6 +42,7 @@ def find_best(data, lists):
     best_combo = []
     best_profit = 0  
     
+    print('List of Combinations')
     for buyers in lists:
         print(buyers)
         temp_profit = 0
@@ -47,7 +51,7 @@ def find_best(data, lists):
         if temp_profit > best_profit:
             best_profit = temp_profit
             best_combo = buyers
-    
+    print('\n')
     return best_combo, best_profit
 
 
